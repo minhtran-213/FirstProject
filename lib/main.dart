@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginPage.routeName: (ctx) => LoginPage(),
         Members.routeName: (ctx) => Members(),
-        CreateMember.routeName: (ctx) => CreateMember(),
+        
         DetailsScreen.routeName: (ctx) => DetailsScreen(),
       },
     );

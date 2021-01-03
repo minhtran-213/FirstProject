@@ -4,7 +4,6 @@ import 'package:project_1/constants.dart';
 import 'package:project_1/screen/members_screen.dart';
 import 'package:project_1/utils/shared_preferences.dart';
 import 'package:project_1/widget/text_field_widget.dart';
-import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login page';

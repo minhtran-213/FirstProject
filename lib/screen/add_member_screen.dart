@@ -3,10 +3,42 @@ import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
 
-class CreateMember extends StatelessWidget {
+class CreateMember extends StatefulWidget {
+  final Function addNewMember;
+
+  CreateMember(this.addNewMember);
+
+  static const routeName = '/add member';
+
+  @override
+  _CreateMemberState createState() => _CreateMemberState();
+}
+
+class _CreateMemberState extends State<CreateMember> {
+  final _nameController = TextEditingController();
+
+  final _phoneController = TextEditingController();
+
+  final _genderController = TextEditingController();
+
+  final _descriptionController = TextEditingController();
+
+  final _dobController = TextEditingController();
+
   String _checkFormat(value) {
     if (value.isEmpty) return 'Please enter some text';
     return null;
+  }
+
+  void _submitData() {
+    final enteredName = _nameController.text;
+    final enteredPhone = _phoneController.text;
+    final enteredGender = _genderController.text;
+    final enteredDescription = _descriptionController.text;
+    final enteredDOB = _dobController.text;
+    widget.addNewMember(enteredName, enteredPhone, enteredGender, enteredDOB,
+        enteredDescription);
+    Navigator.of(context).pop();
   }
 
   Widget buildTexFormField(String hintText, Widget suffixIcon,
@@ -25,7 +57,6 @@ class CreateMember extends StatelessWidget {
     );
   }
 
-  static const routeName = '/add member';
   @override
   Widget build(BuildContext context) {
     //final String memID = ModalRoute.of(context).settings.arguments as String;
@@ -39,7 +70,7 @@ class CreateMember extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: SvgPicture.asset('assets/images/svg/checked_icon.svg'),
-            onPressed: null,
+            onPressed: _submitData,
           ),
         ],
         title: Text(
@@ -56,10 +87,15 @@ class CreateMember extends StatelessWidget {
                 image: AssetImage('assets/images/png/avatar.png'),
               ),
             ),
-            buildTexFormField('Name', null, null, TextInputType.name),
-            buildTexFormField('Phone', null, null, TextInputType.phone),
-            buildTexFormField('Gender', null, null, TextInputType.text),
-            buildTexFormField('Description', null, null, TextInputType.text),
+            buildTexFormField(
+                'Name', null, _nameController, TextInputType.name),
+            buildTexFormField(
+                'Phone', null, _phoneController, TextInputType.phone),
+            buildTexFormField(
+                'Gender', null, _genderController, TextInputType.text),
+            buildTexFormField('DOB', null, _dobController, TextInputType.text),
+            buildTexFormField('Description', null, _descriptionController,
+                TextInputType.text),
           ],
         ),
       ),
