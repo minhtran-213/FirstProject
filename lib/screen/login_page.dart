@@ -103,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       SharedPreference.prefs.setBool('loggedIn', true);
                       if (formKey.currentState.validate()) {
+                        SharedPreference.prefs.setBool('loggedIn', true); 
                         Navigator.pushReplacementNamed(
                             context, Members.routeName);
                       }

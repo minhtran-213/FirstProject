@@ -11,7 +11,7 @@ class DummyData extends ChangeNotifier {
         dob: '1705/05/18',
         description:
             'America’s World War II Super-Soldier con tinues his fight in the present as an Avenger and untiring sentinel of liberty.',
-        avatarUrl: 'assets/images/png/captain_america.png'),
+        avatarUrl: 'assets/images/png/cap_avatar.png'),
     Member(
         name: 'Sam Wilson',
         gender: 'Male',

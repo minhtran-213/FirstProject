@@ -24,13 +24,12 @@ class DetailsScreen extends StatelessWidget {
                   ),
                   Positioned(
                     top: 100,
-                    left: 100,
+                    left: 110,
                     child: Container(
-                      child: Image(
-                        height: 200,
-                        width: 200,
-                        image: AssetImage(args['avatarUrl']),
-                        fit: BoxFit.contain,
+                      width: 200,
+                      height: 200,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(args['avatarUrl']),
                       ),
                     ),
                   ),
