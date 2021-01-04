@@ -47,18 +47,6 @@ class DetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      // Positioned(
-      //   top: 100,
-      //   left: 100,
-      //   child: Container(
-      //     child: Image(
-      //       height: 200,
-      //       width: 200,
-      //       image: AssetImage(args['avatarUrl']),
-      //       fit: BoxFit.contain,
-      //     ),
-      //   ),
-      // ),
     );
   }
 
