@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'model/member.dart';
+import '../model/member.dart';
 
 class DummyData extends ChangeNotifier {
   final List<Member> dummy_member = [
@@ -18,7 +18,7 @@ class DummyData extends ChangeNotifier {
         phoneNumber: '0919309586',
         dob: '1898/06/21',
         description:
-            'When Captain America asked Air Force Veteran Sam Wilson for help, Wilson immediately agreed. He donned the flight suit he’d used in combat to become the Falcon, setting him on a path towards becoming an Avenger.',
+            'When Captain America asked Air Force Veteran Sam Wilson for help, Wilson immedsiately agreed. He donned the flight suit he’d used in combat to become the Falcon, setting him on a path towards becoming an Avenger.',
         avatarUrl: 'assets/images/png/falcon_avatar.png'),
     Member(
         name: 'Bucky Barnes',
@@ -45,8 +45,8 @@ class DummyData extends ChangeNotifier {
             'Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.',
         avatarUrl: 'assets/images/png/wanda_avatar.png'),
   ];
-  void addNewMember(Member member) {
-    dummy_member.add(member);
-    notifyListeners();
-  }
+  // void addNewMember(Member member) {
+  //   dummy_member.add(member);
+  //   notifyListeners();
+  // }
 }

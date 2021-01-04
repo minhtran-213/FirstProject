@@ -36,8 +36,9 @@ class _CreateMemberState extends State<CreateMember> {
     final enteredGender = _genderController.text;
     final enteredDescription = _descriptionController.text;
     final enteredDOB = _dobController.text;
+    final avatarUrl = 'assets/images/png/cap_avatar.png';
     widget.addNewMember(enteredName, enteredPhone, enteredGender, enteredDOB,
-        enteredDescription);
+        enteredDescription, avatarUrl);
     Navigator.of(context).pop();
   }
 

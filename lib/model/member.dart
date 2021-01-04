@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Member {
-
   final String name;
   final String phoneNumber;
   final String description;
@@ -15,6 +14,6 @@ class Member {
     @required this.gender,
     @required this.name,
     @required this.phoneNumber,
-    this.avatarUrl,
+    @required this.avatarUrl,
   });
 }
