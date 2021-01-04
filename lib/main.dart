@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_1/screen/add_member_screen.dart';
 import 'package:project_1/screen/detail_screen.dart';
 import 'package:project_1/screen/login_page.dart';
 import 'package:project_1/screen/members_screen.dart';

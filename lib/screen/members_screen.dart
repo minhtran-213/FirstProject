@@ -101,8 +101,8 @@ class _MembersState extends State<Members> {
                     child: Card(
                       child: ListTile(
                         title: Text(members[index].name),
-                        leading: Image(
-                          image: AssetImage(members[index].avatarUrl),
+                        leading: CircleAvatar(
+                          backgroundImage: AssetImage(members[index].avatarUrl),
                         ),
                         subtitle: Text(members[index].dob),
                       ),
