@@ -7,43 +7,36 @@ import 'package:project_1/screen/detail_screen.dart';
 
 class Uploader extends StatefulWidget {
   final File file;
-  Uploader({this.file});
+  final StorageUploadTask uploadTask;
+
+  final Function startUpload;
+  Uploader({this.file, this.uploadTask, this.startUpload});
   @override
   _UploaderState createState() => _UploaderState();
 }
 
 class _UploaderState extends State<Uploader> {
-  FirebaseStorage _storage =
-      FirebaseStorage(storageBucket: 'gs://first-project-b436c.appspot.com/');
-  StorageUploadTask _uploadTask;
-  void _startUpload() {
-    String path = 'images/${DateTime.now()}.png';
-    setState(() {
-      _uploadTask = _storage.ref().child(path).putFile(widget.file);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (_uploadTask != null) {
+    if (widget.uploadTask != null) {
       return StreamBuilder<StorageTaskEvent>(
-        stream: _uploadTask.events,
+        stream: widget.uploadTask.events,
         builder: (context, snapshot) {
           var event = snapshot?.data?.snapshot;
           double progressPercent =
               event != null ? event.bytesTransferred / event.totalByteCount : 0;
           return Column(
             children: [
-              if (_uploadTask.isComplete) Text('🎇🎇🎇'),
-              if (_uploadTask.isInProgress)
+              if (widget.uploadTask.isComplete) Text('🎇🎇🎇'),
+              if (widget.uploadTask.isInProgress)
                 FlatButton(
                   child: Icon(Icons.pause),
-                  onPressed: _uploadTask.pause,
+                  onPressed: widget.uploadTask.pause,
                 ),
-              if (_uploadTask.isPaused)
+              if (widget.uploadTask.isPaused)
                 FlatButton(
                   child: Icon(Icons.play_arrow),
-                  onPressed: _uploadTask.resume,
+                  onPressed: widget.uploadTask.resume,
                 ),
               FlatButton(
                 child: Text('Complete'),
@@ -61,7 +54,7 @@ class _UploaderState extends State<Uploader> {
       return FlatButton.icon(
         label: Text('Upload'),
         icon: Icon(Icons.cloud_upload),
-        onPressed: _startUpload,
+        onPressed: widget.startUpload,
       );
     }
   }

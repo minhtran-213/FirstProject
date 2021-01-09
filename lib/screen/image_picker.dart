@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,6 +21,16 @@ class _ImageCaptureState extends State<ImageCapture> {
     File selected = await ImagePicker.pickImage(source: imageSource);
     setState(() {
       _image = selected;
+    });
+  }
+
+  FirebaseStorage _storage =
+      FirebaseStorage(storageBucket: 'gs://first-project-b436c.appspot.com/');
+  StorageUploadTask _uploadTask;
+  void _startUpload() {
+    String path = 'images/${DateTime.now()}.png';
+    setState(() {
+      _uploadTask = _storage.ref().child(path).putFile(_image);
     });
   }
 
@@ -50,8 +61,9 @@ class _ImageCaptureState extends State<ImageCapture> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: (){
-              
+            onPressed: () {
+              _startUpload();
+              Navigator.of(context).pop();
             },
             color: Colors.white,
             icon: SvgPicture.asset('assets/images/svg/checked_icon.svg'),
@@ -94,7 +106,11 @@ class _ImageCaptureState extends State<ImageCapture> {
                 ],
               ),
             ),
-            Uploader(file: _image),
+            Uploader(
+              file: _image,
+              startUpload: _startUpload,
+              uploadTask: _uploadTask,
+            ),
           ],
         ],
       ),
