@@ -29,14 +29,8 @@ class DetailsScreen extends StatelessWidget {
                     child: Container(
                       width: 200,
                       height: 200,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(ImageCapture.routeName);
-                        },
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage(args['avatarUrl']),
-                        ),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(args['avatarUrl']),
                       ),
                     ),
                   ),
@@ -50,7 +44,7 @@ class DetailsScreen extends StatelessWidget {
             buildColumn('DOB: ', args['dob'].toString()),
             buildColumn('Gender', args['gender'].toString()),
             buildColumn('Phone number', args['phoneNumber'].toString()),
-            buildColumn('Description', args['description']),
+            buildColumn('Description', args['description'].toString()),
           ],
         ),
       ),

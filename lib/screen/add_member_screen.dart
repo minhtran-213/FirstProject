@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:project_1/screen/image_picker.dart';
 
 import '../constants.dart';
 
@@ -84,8 +85,13 @@ class _CreateMemberState extends State<CreateMember> {
         child: Column(
           children: <Widget>[
             Center(
-              child: Image(
-                image: AssetImage('assets/images/png/avatar.png'),
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(ImageCapture.routeName);
+                },
+                child: Image(
+                  image: AssetImage('assets/images/png/avatar.png'),
+                ),
               ),
             ),
             buildTexFormField(

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -43,6 +44,22 @@ class _ImageCaptureState extends State<ImageCapture> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        title: Text('Choose Avatar'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: (){
+              
+            },
+            color: Colors.white,
+            icon: SvgPicture.asset('assets/images/svg/checked_icon.svg'),
+          )
+        ],
+        backgroundColor: primaryColor,
+        elevation: 0,
+      ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -62,17 +79,20 @@ class _ImageCaptureState extends State<ImageCapture> {
         children: [
           if (_image != null) ...[
             Image.file(_image),
-            Row(
-              children: [
-                FlatButton(
-                  child: Icon(Icons.crop),
-                  onPressed: _cropImage,
-                ),
-                FlatButton(
-                  child: Icon(Icons.refresh),
-                  onPressed: _clear,
-                )
-              ],
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FlatButton(
+                    child: Icon(Icons.crop),
+                    onPressed: _cropImage,
+                  ),
+                  FlatButton(
+                    child: Icon(Icons.delete),
+                    onPressed: _clear,
+                  )
+                ],
+              ),
             ),
             Uploader(file: _image),
           ],

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:project_1/screen/add_member_screen.dart';
+import 'package:project_1/screen/detail_screen.dart';
 
 class Uploader extends StatefulWidget {
   final File file;
@@ -43,15 +45,21 @@ class _UploaderState extends State<Uploader> {
                   child: Icon(Icons.play_arrow),
                   onPressed: _uploadTask.resume,
                 ),
-              LinearProgressIndicator(value: progressPercent),
-              Text('${(progressPercent * 100)} %'),
+              FlatButton(
+                child: Text('Complete'),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(CreateMember.routeName,
+                      arguments: {'imageUrl': widget.file.path});
+                  print(widget.file.path);
+                },
+              ),
             ],
           );
         },
       );
     } else {
       return FlatButton.icon(
-        label: Text('Upload to firebase'),
+        label: Text('Upload'),
         icon: Icon(Icons.cloud_upload),
         onPressed: _startUpload,
       );
