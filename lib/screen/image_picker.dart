@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:project_1/constants.dart';
+import 'package:project_1/screen/add_member_screen.dart';
 import 'package:project_1/services/upload_file.dart';
 
 class ImageCapture extends StatefulWidget {
@@ -16,11 +17,11 @@ class ImageCapture extends StatefulWidget {
 }
 
 class _ImageCaptureState extends State<ImageCapture> {
-  File _image;
+  File image;
   Future<void> _pickImage(ImageSource imageSource) async {
     File selected = await ImagePicker.pickImage(source: imageSource);
     setState(() {
-      _image = selected;
+      image = selected;
     });
   }
 
@@ -30,25 +31,25 @@ class _ImageCaptureState extends State<ImageCapture> {
   void _startUpload() {
     String path = 'images/${DateTime.now()}.png';
     setState(() {
-      _uploadTask = _storage.ref().child(path).putFile(_image);
+      _uploadTask = _storage.ref().child(path).putFile(image);
     });
   }
 
   Future<void> _cropImage() async {
     File cropped = await ImageCropper.cropImage(
-      sourcePath: _image.path,
+      sourcePath: image.path,
       toolbarColor: primaryColor,
       ratioX: 1.0,
       ratioY: 1.0,
     );
     setState(() {
-      _image = cropped ?? _image;
+      image = cropped ?? image;
     });
   }
 
   void _clear() {
     setState(() {
-      _image = null;
+      image = null;
     });
   }
 
@@ -63,7 +64,8 @@ class _ImageCaptureState extends State<ImageCapture> {
           IconButton(
             onPressed: () {
               _startUpload();
-              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(CreateMember.routeName,
+                  arguments: {'imageUrl': image.path});
             },
             color: Colors.white,
             icon: SvgPicture.asset('assets/images/svg/checked_icon.svg'),
@@ -89,8 +91,8 @@ class _ImageCaptureState extends State<ImageCapture> {
       ),
       body: ListView(
         children: [
-          if (_image != null) ...[
-            Image.file(_image),
+          if (image != null) ...[
+            Image.file(image),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +109,7 @@ class _ImageCaptureState extends State<ImageCapture> {
               ),
             ),
             Uploader(
-              file: _image,
+              file: image,
               startUpload: _startUpload,
               uploadTask: _uploadTask,
             ),

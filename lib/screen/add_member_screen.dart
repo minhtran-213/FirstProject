@@ -7,7 +7,7 @@ import '../constants.dart';
 class CreateMember extends StatefulWidget {
   final Function addNewMember;
 
-  CreateMember(this.addNewMember);
+  CreateMember({this.addNewMember});
 
   static const routeName = '/add member';
 
@@ -63,6 +63,8 @@ class _CreateMemberState extends State<CreateMember> {
   Widget build(BuildContext context) {
     //final String memID = ModalRoute.of(context).settings.arguments as String;
     //final selectMem = DUMMY_MEMBER.firstWhere((mem) => memID == mem.id);
+    final args =
+        ModalRoute.of(context).settings.arguments as Map<String, Object>;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundColor,
@@ -89,8 +91,13 @@ class _CreateMemberState extends State<CreateMember> {
                 onTap: () {
                   Navigator.of(context).pushNamed(ImageCapture.routeName);
                 },
-                child: Image(
-                  image: AssetImage('assets/images/png/avatar.png'),
+                child: Container(
+                  height: 195,
+                  width: 197,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(
+                        args['imageUrl'] ?? 'assets/images/png/avatar.png'),
+                  ),
                 ),
               ),
             ),

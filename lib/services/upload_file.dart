@@ -51,11 +51,7 @@ class _UploaderState extends State<Uploader> {
         },
       );
     } else {
-      return FlatButton.icon(
-        label: Text('Upload'),
-        icon: Icon(Icons.cloud_upload),
-        onPressed: widget.startUpload,
-      );
+      return Text('');
     }
   }
 }
