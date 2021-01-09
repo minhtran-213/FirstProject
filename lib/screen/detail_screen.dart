@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_1/screen/image_picker.dart';
 
 class DetailsScreen extends StatelessWidget {
   static const routeName = '/detail screen';
@@ -28,8 +29,14 @@ class DetailsScreen extends StatelessWidget {
                     child: Container(
                       width: 200,
                       height: 200,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage(args['avatarUrl']),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(ImageCapture.routeName);
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage(args['avatarUrl']),
+                        ),
                       ),
                     ),
                   ),
