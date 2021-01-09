@@ -26,6 +26,8 @@ class _ImageCaptureState extends State<ImageCapture> {
     File cropped = await ImageCropper.cropImage(
       sourcePath: _image.path,
       toolbarColor: primaryColor,
+      ratioX: 1.0,
+      ratioY: 1.0,
     );
     setState(() {
       _image = cropped ?? _image;
@@ -43,6 +45,7 @@ class _ImageCaptureState extends State<ImageCapture> {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
               icon: Icon(Icons.photo_camera),
