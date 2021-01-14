@@ -12,7 +12,6 @@ import 'package:project_1/screen/login_page.dart';
 // import 'package:project_1/widget/member_card.dart';
 // import 'package:provider/provider.dart';
 
-import 'dummy_data.dart';
 
 class Members extends StatefulWidget {
   static const routeName = '/members screen';
@@ -22,23 +21,23 @@ class Members extends StatefulWidget {
 }
 
 class _MembersState extends State<Members> {
-  var members = DummyData().dummy_member;
+  // var members = DummyData().dummy_member;
 
-  void _addNewMember(String name, String phoneNumber, String gender, String dob,
-      String description, String avatarUrl) {
-    final newMember = new Member(
-      description: description,
-      gender: gender,
-      name: name,
-      phoneNumber: phoneNumber,
-      dob: dob,
-      avatarUrl: avatarUrl,
-    );
-    setState(() {
-      members.add(newMember);
-      print('${newMember.name}: ${newMember.avatarUrl}');
-    });
-  }
+  // void _addNewMember(String name, String phoneNumber, String gender, String dob,
+  //     String description, String avatarUrl) {
+  //   final newMember = new Member(
+  //     description: description,
+  //     gender: gender,
+  //     name: name,
+  //     phoneNumber: phoneNumber,
+  //     dob: dob,
+  //     avatarUrl: avatarUrl,
+  //   );
+  //   setState(() {
+  //     members.add(newMember);
+  //     print('${newMember.name}: ${newMember.avatarUrl}');
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
